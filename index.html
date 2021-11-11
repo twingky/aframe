@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+    <script src="./aframe.min.js"></script>
+
+    <script src="./aframe.extras.min.js"></script>
+
+    <script src="./aframe-physics-system.min.js"></script>
+
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+
+    <a-scene cursor="rayOrigin: mouse">
+
+        <a-entity id="camera" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls kinematic-body foo>
+            </a-entity>
+        </a-entity>
+
+        <a-entity position="8.85 -2.73 10.91" gltf-model="./islandCredits.glb" animation-mixer=""
+            rotation="0.25 -58.60000000000001 1.22" scale=""></a-entity>
+
+        <a-entity position="10 0 10" gltf-model="#islandType" animation-mixer></a-entity>
+
+        <a-sphere id="blacksphere" dynamic-body position="2 1 -2" color="black" width="1" height="1" depth="1">
+        </a-sphere>
+
+        <a-sphere id="pinksphere" dynamic-body position="0.1 1 -5" color="pink" width="1" height="1" depth="1">
+        </a-sphere>
+
+        <a-sphere static-body position="-2 1 -2" color="cyan" width="1" height="1" depth="1"></a-sphere>
+
+        <a-plane static-body rotation="-90 0 0" position="0 0 -4" width="20" height="20" color="#7BC8A4"></a-plane>
+
+        <a-sky id="sky" color="blue"></a-sky>
+
+        <a-entity static-body id="pinplace" onclick="movePosition(3.44, 1.6, 1.137)" obj-model="obj:place.obj"
+            position="3.44 1.6 1.137" rotation="0 0 180" scale="0.2 0.2 0.2" material="color:grey; opacity:0.8">
+        </a-entity>
+
+        <a-entity static-body id="pinplace" onclick="movePosition(4.74566, 1.6, -5.28399)" obj-model="obj: place.obj"
+            position="4.74566 1.6 -5.28399" rotation="0 0 180" scale="0.2 0.2 0.2" material="color: grey; opacity: 0.8">
+        </a-entity>
+        <a-entity light="intensity: 2.55; castShadow: true; type: spot" position="3.44675 4.66619 5.51084"
+            data-aframe-default-light="" aframe-injected="" visible=""
+            rotation="-11.95075369083871 -163.17035864412662 -10.183751850655252" scale="0.95 1 1"></a-entity>
+        <a-entity static-body position="7.30026 -2.73 3.6812" gltf-model="./islandCredits.glb" animation-mixer=""
+            rotation="0.25 -58.60000000000001 1.22" scale=""></a-entity>
+    </a-scene>
+</body>
+
+
+<script>
+    function myFunction(x) {
+        for (loop = 0; loop < 2; loop++) {
+            if (x.matches) { // If media query matches
+                document.getElementById("sky").setAttribute("color", "yellow");
+                document.getElementById("pinplace").remove();
+            } else {
+                document.getElementById("sky").setAttribute("color", "pink");
+            }
+        }
+    };
+
+    var x = window.matchMedia("(max-width: 700px)")
+    myFunction(x) // Call listener function at run time
+    x.addListener(myFunction) // Attach listener function on state changes
+
+    function movePosition(x, y, z) {
+        var camera = document.getElementById("camera");
+        camera.setAttribute("position", {
+            x: x + 1,
+            y: y,
+            z: z
+        });
+    };
+</script>
+
+</html>
